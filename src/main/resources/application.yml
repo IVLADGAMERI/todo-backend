@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: todo
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ToDo
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: Ov23litIEY7kLVQnH3YY
+            clientSecret: baebcba972d63ec1cfaf301eb56b304efe496daf
