@@ -16,3 +16,8 @@ spring:
           github:
             clientId: Ov23litIEY7kLVQnH3YY
             clientSecret: baebcba972d63ec1cfaf301eb56b304efe496daf
+        provider:
+          github:
+              authorizationUri: https://github.com/login/oauth/authorize
+              tokenUri: https://github.com/login/oauth/access_token
+              userInfoUri: https://api.github.com/user

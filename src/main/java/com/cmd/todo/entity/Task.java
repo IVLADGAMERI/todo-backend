@@ -28,9 +28,6 @@ public class Task {
     private TaskPriority priority;
     @Column(name = "created_at")
     private Timestamp createdAt;
-    @ManyToOne
-    @JoinColumn(name = "topic_id", nullable = false)
-    private Topic topic;
     @Column(name = "user_id", nullable = false)
     private long userId;
 }
