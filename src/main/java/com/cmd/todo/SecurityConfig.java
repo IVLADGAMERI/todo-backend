@@ -30,6 +30,9 @@ public class SecurityConfig {
                 })
                 .logout(logout -> {
                     logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+                    logout.logoutSuccessUrl("https://github.com/logout")
+                            .invalidateHttpSession(true)
+                            .clearAuthentication(true);
                 })
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource()));
