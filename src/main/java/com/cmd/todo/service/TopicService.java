@@ -28,6 +28,10 @@ public class TopicService {
         return toDTOList(topics);
     }
 
+    protected Optional<Topic> getTopicByUserIdAndId(@PositiveOrZero long userId, @PositiveOrZero long id) {
+        return repository.getByUserIdAndId(userId, id);
+    }
+
     public void addTopic(@PositiveOrZero long userId, @Valid AddTopicDTO addTopicDTO) {
         Topic topic = new Topic();
         topic.setTitle(addTopicDTO.getTitle());

@@ -6,6 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum TaskStatus {
-    ACTIVE("АктивнО"), FINISHED("Выполнено");
+    ACTIVE("Активно"), FINISHED("Выполнено");
     private final String title;
 }

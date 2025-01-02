@@ -7,12 +7,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
 @Table(name = "tasks")
 @NoArgsConstructor
 @Data
 public class Task {
+    @PrePersist
+    protected void initCreatedAt() {
+        this.createdAt = Timestamp.from(Instant.now());
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -30,4 +36,7 @@ public class Task {
     private Timestamp createdAt;
     @Column(name = "user_id", nullable = false)
     private long userId;
+    @ManyToOne
+    @JoinColumn(name = "topic_id", nullable = false)
+    private Topic topic;
 }
