@@ -10,17 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TaskController {
+public class TaskController extends Oauth2Controller {
     @Autowired
     private TaskService taskService;
 
     @PostMapping("/task")
     public void addTask(@AuthenticationPrincipal OAuth2User oAuth2User, @RequestBody AddTaskDTO addTaskDTO) {
         taskService.addTask(getUserId(oAuth2User), addTaskDTO);
-    }
-
-    private long getUserId(OAuth2User oAuth2User) {
-        Integer userId = oAuth2User.getAttribute("id");
-        return userId;
     }
 }

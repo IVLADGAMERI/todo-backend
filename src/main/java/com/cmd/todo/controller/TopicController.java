@@ -9,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-public class TopicController {
+public class TopicController extends Oauth2Controller {
     @Autowired
     private TopicService service;
 
@@ -37,10 +36,5 @@ public class TopicController {
     public void deleteTopic(@AuthenticationPrincipal OAuth2User oAuth2User,
                             @RequestBody DeleteTopicDTO deleteTopicDTO) {
         service.deleteTopic(getUserId(oAuth2User), deleteTopicDTO);
-    }
-
-    private long getUserId(OAuth2User oAuth2User) {
-        Integer userId = oAuth2User.getAttribute("id");
-        return userId;
     }
 }

@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserController {
+public class UserController extends Oauth2Controller {
     @GetMapping("/user/name")
     public String getUserName(@AuthenticationPrincipal OAuth2User oAuth2User) {
-        return oAuth2User.getAttribute("login");
+        return getUserLogin(oAuth2User);
     }
 
     @GetMapping("/user")
     public UserDTO getUserInfo(@AuthenticationPrincipal OAuth2User oAuth2User) {
-        return new UserDTO(oAuth2User.getAttribute("login"),
-                oAuth2User.getAttribute("avatar_url"),
-                oAuth2User.getAttribute("html_url"));
+        return new UserDTO(getUserLogin(oAuth2User),
+                getUserAvatarUrl(oAuth2User),
+                getUserPageUrl(oAuth2User));
     }
 }
