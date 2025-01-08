@@ -1,5 +1,6 @@
-package com.cmd.todo.DTO;
+package com.cmd.todo.DTO.response;
 
+import com.cmd.todo.DTO.response.TaskDTO;
 import com.cmd.todo.entity.Task;
 import com.cmd.todo.entity.Topic;
 import lombok.Getter;

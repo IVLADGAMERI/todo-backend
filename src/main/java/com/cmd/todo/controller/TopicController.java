@@ -1,9 +1,9 @@
 package com.cmd.todo.controller;
 
-import com.cmd.todo.DTO.AddTopicDTO;
-import com.cmd.todo.DTO.DeleteTopicDTO;
-import com.cmd.todo.DTO.TopicDTO;
-import com.cmd.todo.DTO.UpdateTopicTitleDTO;
+import com.cmd.todo.DTO.request.AddTopicDTO;
+import com.cmd.todo.DTO.request.DeleteTopicDTO;
+import com.cmd.todo.DTO.response.TopicDTO;
+import com.cmd.todo.DTO.request.UpdateTopicTitleDTO;
 import com.cmd.todo.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

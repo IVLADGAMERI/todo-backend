@@ -1,11 +1,13 @@
 package com.cmd.todo.service;
 
-import com.cmd.todo.DTO.AddTaskDTO;
+import com.cmd.todo.DTO.request.AddTaskDTO;
+import com.cmd.todo.DTO.response.TaskFullDTO;
 import com.cmd.todo.TaskStatus;
 import com.cmd.todo.entity.Task;
 import com.cmd.todo.entity.Topic;
 import com.cmd.todo.repository.TaskRepository;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +32,10 @@ public class TaskService {
         task.setUserId(userId);
         task.setPriority(addTaskDTO.getPriority());
         repository.save(task);
+    }
+
+    public TaskFullDTO getTaskFull(@PositiveOrZero long userId, @NotNull @PositiveOrZero long id) {
+        Task task = repository.getByIdAndUserId(id, userId);
+        return new TaskFullDTO(task);
     }
 }

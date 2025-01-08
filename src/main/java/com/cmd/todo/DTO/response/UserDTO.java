@@ -1,4 +1,4 @@
-package com.cmd.todo.DTO;
+package com.cmd.todo.DTO.response;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

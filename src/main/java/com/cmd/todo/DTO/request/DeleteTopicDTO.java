@@ -1,4 +1,4 @@
-package com.cmd.todo.DTO;
+package com.cmd.todo.DTO.request;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
