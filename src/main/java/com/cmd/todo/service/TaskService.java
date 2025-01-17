@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.time.ZonedDateTime;
+
 @Service
 @Validated
 public class TaskService {
@@ -31,10 +33,15 @@ public class TaskService {
         task.setTitle(addTaskDTO.getTitle());
         task.setUserId(userId);
         task.setPriority(addTaskDTO.getPriority());
+        if (addTaskDTO.getExpiresAt() != null && !addTaskDTO.getExpiresAt().isEmpty()) {
+            task.setExpiresAt(ZonedDateTime.parse(addTaskDTO.getExpiresAt()));
+        }
         repository.save(task);
     }
 
-    public TaskFullDTO getTaskFull(@PositiveOrZero long userId, @NotNull @PositiveOrZero long id) {
+    public TaskFullDTO getTaskFull(
+            @PositiveOrZero long userId,
+            @NotNull @PositiveOrZero long id) {
         Task task = repository.getByIdAndUserId(id, userId);
         return new TaskFullDTO(task);
     }

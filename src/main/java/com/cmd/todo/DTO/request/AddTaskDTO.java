@@ -1,7 +1,6 @@
 package com.cmd.todo.DTO.request;
 
 import com.cmd.todo.TaskPriority;
-import com.cmd.todo.TaskStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -18,6 +17,7 @@ public class AddTaskDTO {
     private final String title;
     @NotNull
     private final TaskPriority priority;
+    private final String expiresAt;
     @NotNull
     @PositiveOrZero
     private final long topicId;

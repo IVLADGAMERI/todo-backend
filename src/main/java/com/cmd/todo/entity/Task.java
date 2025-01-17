@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "tasks")
@@ -16,7 +16,7 @@ import java.time.Instant;
 public class Task {
     @PrePersist
     protected void initCreatedAt() {
-        this.createdAt = Timestamp.from(Instant.now());
+        this.createdAt = ZonedDateTime.now(ZoneOffset.UTC);
     }
 
     @Id
@@ -32,8 +32,10 @@ public class Task {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TaskPriority priority;
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = false)
+    private ZonedDateTime createdAt;
+    @Column(name = "expires_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private ZonedDateTime expiresAt;
     @Column(name = "user_id", nullable = false)
     private long userId;
     @ManyToOne
