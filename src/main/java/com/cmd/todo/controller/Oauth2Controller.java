@@ -1,6 +1,6 @@
 package com.cmd.todo.controller;
 
-import org.springframework.http.HttpStatus;
+import com.cmd.todo.exception.PrincipalIsNullException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 public abstract class Oauth2Controller {
     protected static void throwIfPrincipalNull(OAuth2User principal) throws ResponseStatusException {
         if (principal == null) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+            throw new PrincipalIsNullException("Ошибка авторизации");
         }
     }
 
