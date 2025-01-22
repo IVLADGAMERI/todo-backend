@@ -1,6 +1,7 @@
 package com.cmd.todo.service;
 
 import com.cmd.todo.DTO.request.AddTaskDTO;
+import com.cmd.todo.DTO.request.UpdateTaskContentDTO;
 import com.cmd.todo.DTO.response.TaskFullDTO;
 import com.cmd.todo.TaskStatus;
 import com.cmd.todo.entity.Task;
@@ -36,6 +37,12 @@ public class TaskService {
         if (addTaskDTO.getExpiresAt() != null && !addTaskDTO.getExpiresAt().isEmpty()) {
             task.setExpiresAt(ZonedDateTime.parse(addTaskDTO.getExpiresAt()));
         }
+        repository.save(task);
+    }
+
+    public void updateTaskContent(@PositiveOrZero long userId, @Valid UpdateTaskContentDTO updateTaskContentDTO) {
+        Task task = repository.getByIdAndUserId(updateTaskContentDTO.getTaskId(), userId);
+        task.setContent(updateTaskContentDTO.getNewContent());
         repository.save(task);
     }
 

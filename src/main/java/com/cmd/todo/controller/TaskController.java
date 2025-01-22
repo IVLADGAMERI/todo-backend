@@ -1,6 +1,7 @@
 package com.cmd.todo.controller;
 
 import com.cmd.todo.DTO.request.AddTaskDTO;
+import com.cmd.todo.DTO.request.UpdateTaskContentDTO;
 import com.cmd.todo.DTO.response.TaskFullDTO;
 import com.cmd.todo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,12 @@ public class TaskController extends Oauth2Controller {
     @PostMapping("/task")
     public void addTask(@AuthenticationPrincipal OAuth2User oAuth2User, @RequestBody AddTaskDTO addTaskDTO) {
         taskService.addTask(getUserId(oAuth2User), addTaskDTO);
+    }
+
+    @PutMapping("/task/content")
+    public void updateTaskContent(@AuthenticationPrincipal OAuth2User oAuth2User,
+                                  @RequestBody UpdateTaskContentDTO updateTaskContentDTO) {
+        taskService.updateTaskContent(getUserId(oAuth2User), updateTaskContentDTO);
     }
 
     @GetMapping("/task")

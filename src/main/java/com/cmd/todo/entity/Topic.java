@@ -18,6 +18,6 @@ public class Topic {
     private String title;
     @Column(name = "user_id", nullable = false)
     private long userId;
-    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<Task> tasks;
 }
