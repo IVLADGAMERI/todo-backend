@@ -14,6 +14,5 @@ public class UpdateTaskContentDTO {
     @PositiveOrZero
     private long taskId;
     @NotNull
-    @NotBlank
     private String newContent;
 }
