@@ -19,4 +19,9 @@ public class ExceptionsHandler {
     public ResponseEntity<String> handleBadRequest(Exception e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(IllegalDataMutationException.class)
+    public ResponseEntity<String> handleForbidden(IllegalDataMutationException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+    }
 }

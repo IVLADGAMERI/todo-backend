@@ -1,11 +1,13 @@
 package com.cmd.todo.service;
 
 import com.cmd.todo.DTO.request.AddTaskDTO;
+import com.cmd.todo.DTO.request.DeleteTaskDTO;
 import com.cmd.todo.DTO.request.UpdateTaskContentDTO;
 import com.cmd.todo.DTO.response.TaskFullDTO;
 import com.cmd.todo.TaskStatus;
 import com.cmd.todo.entity.Task;
 import com.cmd.todo.entity.Topic;
+import com.cmd.todo.exception.IllegalDataMutationException;
 import com.cmd.todo.repository.TaskRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -23,6 +25,15 @@ public class TaskService {
     private TaskRepository repository;
     @Autowired
     private TopicService topicService;
+
+    public void deleteTask(@PositiveOrZero long userId, @Valid DeleteTaskDTO deleteTaskDTO) {
+        Task task = repository.getByIdAndUserId(deleteTaskDTO.getId(), userId);
+        if (task.getTopic().getUserId() == userId) {
+            repository.delete(task);
+            return;
+        }
+        throw new IllegalDataMutationException("Неверный id");
+    }
 
     public void addTask(@PositiveOrZero long userId, @Valid AddTaskDTO addTaskDTO) {
         Topic topic = topicService.getTopicByUserIdAndId(userId, addTaskDTO.getTopicId())

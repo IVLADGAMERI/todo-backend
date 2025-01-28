@@ -1,6 +1,7 @@
 package com.cmd.todo.controller;
 
 import com.cmd.todo.DTO.request.AddTaskDTO;
+import com.cmd.todo.DTO.request.DeleteTaskDTO;
 import com.cmd.todo.DTO.request.UpdateTaskContentDTO;
 import com.cmd.todo.DTO.response.TaskFullDTO;
 import com.cmd.todo.service.TaskService;
@@ -29,5 +30,11 @@ public class TaskController extends Oauth2Controller {
     public TaskFullDTO getTaskById(@AuthenticationPrincipal OAuth2User oAuth2User,
                                    @RequestParam long id) {
         return taskService.getTaskFull(getUserId(oAuth2User), id);
+    }
+
+    @DeleteMapping("/task")
+    public void deleteTaskById(@AuthenticationPrincipal OAuth2User oAuth2User,
+                               @RequestBody DeleteTaskDTO deleteTaskDTO) {
+        taskService.deleteTask(getUserId(oAuth2User), deleteTaskDTO);
     }
 }
