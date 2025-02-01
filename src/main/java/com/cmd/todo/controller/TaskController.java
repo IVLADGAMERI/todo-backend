@@ -3,6 +3,7 @@ package com.cmd.todo.controller;
 import com.cmd.todo.DTO.request.AddTaskDTO;
 import com.cmd.todo.DTO.request.DeleteTaskDTO;
 import com.cmd.todo.DTO.request.UpdateTaskContentDTO;
+import com.cmd.todo.DTO.request.UpdateTaskInfoDTO;
 import com.cmd.todo.DTO.response.TaskFullDTO;
 import com.cmd.todo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,11 @@ public class TaskController extends Oauth2Controller {
     public void deleteTaskById(@AuthenticationPrincipal OAuth2User oAuth2User,
                                @RequestBody DeleteTaskDTO deleteTaskDTO) {
         taskService.deleteTask(getUserId(oAuth2User), deleteTaskDTO);
+    }
+
+    @PutMapping("/task/info")
+    public void updateTaskInfo(@AuthenticationPrincipal OAuth2User oAuth2User,
+                               @RequestBody UpdateTaskInfoDTO updateTaskInfoDTO) {
+        taskService.updateTaskInfo(getUserId(oAuth2User), updateTaskInfoDTO);
     }
 }
